@@ -16,10 +16,7 @@ class Explore extends Component {
   }
 
   ExplorePost = () => {
-    firebase
-      .database()
-      .ref('/posts')
-      .once('value')
+    firebase.database().ref('/posts').once('value')
       .then(post => {
         var arrData = [];
         Object.keys(post.val()).forEach(data => {
@@ -29,7 +26,7 @@ class Explore extends Component {
           }
         });
         this.setState({
-          post: arrData,
+          post: arrData
         });
         console.log(arrData);
       });
