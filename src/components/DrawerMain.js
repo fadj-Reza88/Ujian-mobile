@@ -9,6 +9,7 @@ const DrawerNavigator = createAppContainer(createDrawerNavigator(
     {
         MainMenu: {
             screen: TabMainMenu,
+            //menghilangkan label main menu
             navigationOptions: {
                 drawerLabel: () => null
             }

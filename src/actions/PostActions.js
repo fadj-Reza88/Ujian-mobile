@@ -3,7 +3,11 @@ import '@firebase/database';
 import _ from 'lodash';
 import { 
     EMPTY_POST_LIST,
-    FILL_POST_LIST
+    FILL_POST_LIST,
+    SELECT_POST_PROFILE,
+    DELETE_POST,
+    DELETE_POST_SUCCESS,
+    SELECT_EXPLORE_POST
 } from './types';
 
 export const getListPost = () => {
@@ -32,6 +36,36 @@ export const getListPost = () => {
             });
         })   
 
+    } 
+}
+
+export const selectProfilePost = (post) => {
+    return {
+        type: SELECT_POST_PROFILE,
+        payload: post
+    }
+}
+
+export const selectExpPost = () => {
+    return {
+        type: SELECT_EXPLORE_POST,
+        payload: post
+    }
+}
+
+
+export const deletePost = (postId) => {
+    return (dispatch) => {
+        dispatch({
+            type: DELETE_POST
+        })
+        firebase.database().ref(`/posts/${postId}`)
+            .remove()
+            .then(() => {
+                dispatch({
+                    type: DELETE_POST_SUCCESS
+                })
+        })
     }
 }
 
